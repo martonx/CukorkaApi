@@ -1,0 +1,20 @@
+@CukorkaApi_HostAddress = http://localhost:5072
+
+###
+GET {{CukorkaApi_HostAddress}}/getall/
+Accept: application/json
+
+###
+GET {{CukorkaApi_HostAddress}}/get/1
+Accept: application/json
+
+###
+POST {{CukorkaApi_HostAddress}}/add
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Cukorka",
+  "price": 10,
+  "stock": 100
+}
