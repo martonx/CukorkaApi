@@ -3,12 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Ez a tesztekben használhatósághoz kell, hogy a teszt framework elérje az endpointokat
+builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddDbContext<SugarDbContext>(options =>
   options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Cukorka;Trusted_Connection=True;MultipleActiveResultSets=true"));
 
 var app = builder.Build();
-
-app.UseHttpsRedirection();
 
 app.MapGet("/getall", (SugarDbContext dbContext) => dbContext.Products.ToList());
 
@@ -23,3 +24,6 @@ app.MapPost("/add", (SugarDbContext dbContext, Product product) =>
 //TODO: implement update and delete and reports
 
 app.Run();
+
+//Ez a tesztekben használhatósághoz kell, hogy publikusan elérhetõ legyen a Program osztály
+public partial class Program;
